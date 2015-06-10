@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="span4">
+      <h1>Welcome to railsTwitter</h1>
+      <hr>
+      <p>Check out what's going on...</p>
+      <div class="well">
+          <% if @tweets.size > 0 %>
+              <% @tweets.each do |t| %> 
+                  <p><strong style="size:8px;"><%= t.name %>:</strong> <%= t.body %></br>
+                  <% time = t.created_at %>
+                  <i><small><%= time.strftime("%I:%M:%S %p") %></small></i></p>
+              <% end %>
+          <% else %>
+              No tweets today! Go make one!
+          <% end %>
+      </div> <!-- well -->
+      <p>What's going on with you?<p>
+      <%= form_for @new_tweet, :url => { :action => "add" }  do |f|  %>
+        <%= f.text_field :name, :placeholder => "Name" %>
+        <% f.label :name, 'Your Name' %>
+        <%= f.text_field :body, :placeholder => "Tweet Body"%></br>
+        <% f.label :body, 'Your Name' %>
+        <%= f.submit "Tweet It", class: "btn btn-primary" %>
+     <%end%>
+     <% if flash[:error] %>
+         <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert" >×</button>
+            <strong><%= flash[:error] %></strong>
+            </div>
+        <% end %>
+     <% if flash[:success] %>
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" >×</button>
+                <strong><%= flash[:success] %></strong>
+            </div>
+		<% end %>
+    </div> <!-- span4 -->
+  </div> <!-- row -->
+</div> <!-- container -->
