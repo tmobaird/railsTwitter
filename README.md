@@ -7,4 +7,11 @@ $ gem install cucumber
 $ bundle install
 $ rails g cucumber:install
 ```
-Thsi will create all the necessary directories and install cucumber for you.
+Thsi will create all the necessary directories and install cucumber for you. From here if you would like to execute your cucumber tests on the application you can type either of the following commands:
+```
+$ bundle exec cucumber
+```
+or
+```
+$ cucumber /features/fileToTest.cucumber
+```
